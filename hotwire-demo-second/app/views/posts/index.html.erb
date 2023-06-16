@@ -1,0 +1,15 @@
+<h1 data-controller="posts" data-action="click->posts#updateTitle" data-target="posts.title">Posts</h1>
+
+<%= turbo_stream_from "posts" %>
+
+<div id="posts">
+  <%= render @posts %>
+</div>
+
+<%= form_with model: Post.new, id: "new_post", data: { turbo_frame: "posts" } do |f| %>
+  <table><h3>Add Your Post Here</h3> 
+    <p><%= f.text_field :title, :value => "Title" %></p>  
+    <p><%= f.text_area :content, size: "20x5", :value => "Content" %></p>
+    <%= f.submit "Create Post" %>
+  </table>
+<% end %> 
